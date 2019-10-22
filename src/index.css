@@ -1,0 +1,12 @@
+.win {
+  background-color: rgb(144, 148, 156);
+  padding: 10px;
+  margin: 20px;
+  width: 600px;
+  height: 150px;
+  color: lightgreen;
+}
+
+.h3 p {
+  color: rgb(241, 237, 237);
+}
