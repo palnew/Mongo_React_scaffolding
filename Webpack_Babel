@@ -1,0 +1,82 @@
+
+Step 1: npm init --yes
+Step 2: npm i react react-dom
+Step 3: npm i -D @babel/preset-react @babel/preset-env @babel/core babel-loader @babel/plugin-proposal-class-properties
+Step 4: .babelrc
+
+{
+  "presets": [
+ [ "@babel/preset-env", {
+   "modules": false,
+   "targets": {
+  "browsers": [
+    "last 1 Chrome versions"    
+  ]
+   }
+ } ],
+ "@babel/preset-react"
+  ],
+  "plugins": [ "@babel/plugin-proposal-class-properties" ]
+}
+
+or {     "presets": ["@babel/preset-env", "@babel/preset-react"] }
+
+Step 5: npm i -D webpack webpack-cli webpack-dev-server html-webpack-plugin path
+
+Step 6: mkdir src public
+
+Step 7: touch src/index.js src/App.js public/index.html
+
+Step 8: create webpack.config.js
+
+Step 9: npm install style-loader css-loader file-loader
+
+Step 10: const HtmlWebPackPlugin = require( 'html-webpack-plugin' );
+const path = require( 'path' );
+module.exports = {
+   context: __dirname,
+   entry: './src/index.js',
+   output: {
+      path: path.resolve( __dirname, 'dist' ),
+      filename: 'main.js',
+      publicPath: '/',
+   },
+   devServer: {
+      historyApiFallback: true
+   },
+   module: {
+      rules: [
+         {
+            test: /\.js$/,
+            use: 'babel-loader',
+         },
+         {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader'],
+         },
+         {
+            test: /\.(png|j?g|svg|gif)?$/,
+            use: 'file-loader'
+         }
+]
+   },
+   plugins: [
+      new HtmlWebPackPlugin({
+         template: path.resolve( __dirname, 'public/index.html' ),
+         filename: 'index.html'
+      })
+   ]
+};
+
+Step 11:
+
+Create index.html 
+
+Step 12:
+
+Package.json
+
+"scripts": {
+    "start": "webpack-dev-server --open --hot --mode development",
+    "build": "webpack --mode production"
+  },
